@@ -698,3 +698,8 @@
 .markdown-body hr {
   border-bottom-color: #eee;
 }
+
+span.rev {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
