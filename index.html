@@ -14,6 +14,49 @@
 			padding: 15px;
 		}
 	}
+	.accordion {
+	    background-color: #eee;
+	    color: #111111;
+	    cursor: pointer;
+	    padding: 18px;
+	    width: 100%;
+	    border: none;
+	    text-align: left;
+	    outline: none;
+	    font-size: 1.5em;
+		font-weight: 600;
+		line-height: 1.25;
+	    transition: 0.4s;
+	}
+
+	.accordion:hover {
+	    background-color: #ccc; 
+	}
+	
+	.accordion:after {
+	    content: '\02795'; /* Unicode character for "plus" sign (+) */
+	    font-size: 13px;
+	    color: #777;
+	    float: right;
+		margin-top: 8px;
+	    margin-left: 5px;
+	}
+
+	.active:after {
+	    content: "\2796"; /* Unicode character for "minus" sign (-) */
+	}
+
+	.panel {
+	    padding: 0 18px;
+	    background-color: white;
+	    max-height: 0;
+	    overflow: hidden;
+	    transition: max-height 0.2s ease-out;
+	}
+	
+	.panel ul{
+		margin-top: 14px;
+	}
 </style>
 <head>
 	<title>Pillowmath</title>
@@ -32,10 +75,10 @@
 
 <body>
 <article class="markdown-body">
-	<h2>Tutoring Services</h2>
+	<h2>Math Tutoring</h2>
 	<p>I am tutoring students at UC Berkeley in math, statistics, and computer science classes. I tutor in CS 70, Math 1A/B, Math 10A/B, Math 16A/B, Math 53, Math 54, Math 55, Math 104, Math 110, Math 113, Math 185, Stat 134, Stat 155, and more (including graduate classes).</p>
 	<p>If you are in the Los Angeles area, I may be able to meet you in person. Otherwise, we can do Skype tutoring sessions. My rate is $50/hr. If this really isn't something you can afford, then talk to me; we can see what works for you.</p>
-	<p>Starting this fall, I'll be a PhD student in math at UCLA. I graduated from UC Berkeley with a BA in math and have several years of experience tutoring UC Berkeley students in math classes.</p>
+	<p>I am a PhD student in math at UCLA. I graduated from UC Berkeley with a BA in math and have several years of experience tutoring UC Berkeley students in math classes.</p>
 	<p>If you know anyone who is looking for a math tutor, please direct them to me. Thanks!</p>
 	<h1>Daniel Raban's Note Repository</h1>
 	<p>If you find any typos or inaccuracies, or if you have any suggestions on how to improve the notes (aesthetically or otherwise), send me an email at <span class="rev">ude.yelekreb@nabarleinad</span>. I appreciate the help!</p>
@@ -44,8 +87,35 @@
  	   <ul>
  	       <li><a href="Expository Notes/Measure Theory Notes.pdf">Measure Theory for Analysts and Probabilists (Updated 7/16/18)</a></li>
  	   </ul>
-	<h2>Math 142: Algebraic Topology (Jamie Conway)</h2>
+	<h2>Course Notes</h2>
+	<button class="accordion">[UCLA] Math 206A: Combinatorial Discrete Geometry (Pak)</button>
+	<div class="panel">
  	   <ul>
+ 	       <li><a href="Math 206A/Lec1.pdf">Lecture 1</a></li>
+ 	   </ul>
+	</div>
+ 	<button class="accordion">[UCLA] Math 210A: Algebra (Sharifi)</button>
+	<div class="panel">
+ 	   <ul>
+ 	       <li><a href="Math 210A/Lec1.pdf">Lecture 1</a></li>
+ 	   </ul>
+ 	</div>
+	<button class="accordion">[UCLA] Math 246A: Complex Analysis (Garnett)</button>
+	<div class="panel">
+ 	   <ul>
+ 	       <li><a href="Math 246A/Lec1.pdf">Lecture 1</a></li>
+		   <li><a href="Math 246A/Lec2.pdf">Lecture 2</a></li>
+ 	   </ul>
+ 	</div>
+	<button class="accordion">[UCLA] Math 255A: Functional Analysis (Hitrik)</button>
+	<div class="panel">
+ 	   <ul>
+ 	       <li><a href="Math 255A/Lec1.pdf">Lecture 1</a></li>
+ 	   </ul>
+	</div>
+	<button class="accordion">[UC Berkeley] Math 142: Algebraic Topology (Jamie Conway)</button>
+ 	<div class="panel">
+	   <ul>
 		   <li><a href="Math 142/main.pdf">Complete Notes</a></li>
  	       <li><a href="Math 142/Lec1.pdf">Lecture 1</a></li>
 		   <li><a href="Math 142/Lec2.pdf">Lecture 2</a></li>
@@ -73,7 +143,9 @@
 		   <li><a href="Math 142/Lec24.pdf">Lecture 24</a></li>
 		   <li><a href="Math 142/Lec25.pdf">Lecture 25</a></li>
  	   </ul>
-	<h2>Math <a href="https://en.wikipedia.org/wiki/249_(number)">249</a>: Algebraic Combinatorics (Haiman)</h2>
+	</div>
+	<button class="accordion">[UC Berkeley] Math <a href="https://en.wikipedia.org/wiki/249_(number)">249</a>: Algebraic Combinatorics (Haiman)</button>
+	<div class="panel">
 	   <ul>
 	       <li><a href="Math 249/Lec1.pdf">Lecture 1</a></li>
 		   <li><a href="Math 249/Lec2.pdf">Lecture 2</a></li>
@@ -104,7 +176,9 @@
 		   <li><a href="Math 249/Lec35.pdf">Lecture 35</a></li>
 		   <li><a href="Math 249/Lec37.pdf">Lecture 37</a></li>
 	   </ul>
-	<h2>Math 250A: Groups, Rings, and Fields (<a href="borcherds.html">Borcherds</a>)</h2>
+	</div>
+	<button class="accordion">[UC Berkeley] Math 250A: Groups, Rings, and Fields (<a href="borcherds.html">Borcherds</a>)</button>
+	<div class="panel">
 	   <ul>
 		   <li><a href="Math 250A/main.pdf">Complete Notes</a></li>
 	       <li><a href="Math 250A/Lec1.pdf">Lecture 1</a></li>
@@ -134,8 +208,10 @@
 		   <li><a href="Math 250A/Lec25.pdf">Lecture 25</a></li>
 		   <li><a href="Math 250A/Lec26.pdf">Lecture 26</a></li>
 	   </ul>
- 	<h2>Stat 155: Game Theory (Madrid Padilla)</h2>
- 	   <ul>
+ 	</div>
+	<button class="accordion">[UC Berkeley] Stat 155: Game Theory (Madrid Padilla)</button>
+ 	<div class="panel">
+	   <ul>
  	       <li><a href="Stat 155/main.pdf">Complete Notes</a></li>
 		   <li><a href="Stat 155/Lec1.pdf">Lecture 1</a></li>
 		   <li><a href="Stat 155/Lec2.pdf">Lecture 2</a></li>
@@ -161,11 +237,31 @@
 		   <li><a href="Stat 155/Lec22.pdf">Lecture 22</a></li>
 		   <li><a href="Stat 155/Lec23.pdf">Lecture 23</a></li>
  	   </ul>
- 	<h2>Stat 206B: Stochastic Processes (Pitman)</h2>
- 	   <ul>
+ 	</div>
+	<button class="accordion">[UC Berkeley] Stat 206B: Stochastic Processes (Pitman)</button>
+ 	<div class="panel">
+	   <ul>
  	       <li><a href="Stat 206B/Lec1.pdf">Lecture 1</a></li>
 		   <li><a href="Stat 206B/Lec2.pdf">Lecture 2</a></li>
 		   <li><a href="Stat 206B/Lec3.pdf">Lecture 3</a></li>
  	   </ul>
+	</div>
 	</article>
+	
+	<script>
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	    acc[i].addEventListener("click", function() {
+	        this.classList.toggle("active");
+	        var panel = this.nextElementSibling;
+			if (panel.style.maxHeight){
+			      panel.style.maxHeight = null;
+			    } else {
+			      panel.style.maxHeight = panel.scrollHeight + "px";
+			    } 
+		  });
+	}
+	</script>
 </body>
