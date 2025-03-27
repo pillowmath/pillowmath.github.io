@@ -1,0 +1,120 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../github-markdown.css">
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+	
+	.aligncenter {
+	    text-align: center;
+	}
+	
+</style>
+<head>
+	<title>Pillowmath</title>
+	<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico?" >
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-MGGSG76J');</script>
+	<!-- End Google Tag Manager -->
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-DQE6L5ZQWV"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-DQE6L5ZQWV');
+	</script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-106127486-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MGGSG76J"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+<article class="markdown-body">
+	<h1>The Problem With Averaging Ratings</h1>
+	<h2>Personal rating scales</h2>
+	<p>Here’s a common situation: We want to compare a number of items—like <a href=https://www.imdb.com/chart/top/?ref_=nv_mv_250>movies</a>, <a href=https://www.yelp.com/search?find_desc=Restaurants>restaurants</a>, or <a href=https://pillowmath.github.io/Ratings/job-applicant-ratings.html>job applicants</a>—to see which ones we prefer to others. So we have people provide numerical ratings for each item—like a number between 1 and 10—and we compare the average ratings for each item. This is an approach that goes back <a href=https://psycnet.apa.org/record/1933-01885-001>almost a hundred years</a>, but there’s a fundamental issue: people rate according to different <i>personal rating scales</i>.</p>
+	<p>For example, suppose we have two people, Alice and Bob, rating movies.</p>
+	
+	<p class="aligncenter"><img style="max-width: 500px; height: auto; " src="Alice-bob-rating-matrix.png"></img></p>
+	
+	<p>Alice tends to give ratings between 2 and 9 (out of 10), and Bob tends to give ratings between 8 and 10.</p>
+	
+	<p class="aligncenter"><img style="max-width: 600px; height: auto; " src="Alice-bob-rating-scales.png"></img></p>
+	
+	<p>If Alice and Bob both rate a movie 8, then these numbers mean very different things! Alice loved the movie, but Bob hated it—and the average treats these two ratings as the same.</p>
+	
+	<p>Averaging takes the numbers at face value. A score of 8 is considered to be literally twice as good as a 4, and the difference between 7 and 8 is assumed to be the same as the difference between 9 and 10. But this doesn't capture the difference in meaning of Alice and Bob's ratings.</p>
+	
+	<p>Personal rating scales can lead to unfair comparisons, as well. If Alice and Bob rate different job applicants, Bob’s high ratings give an unfair advantage to anyone he rates. Simply averaging ratings forces us to interpret these numbers in a way which is divorced from their context.
+</p>
+	<h2>Looking at the data</h2>
+	<p>If we take a closer look at the data, we can get a hint as to where we're going wrong. When we average the ratings for a particular item, we only look at one column of the rating matrix at a time.</p>
+	
+	<p class="aligncenter"><img style="max-width: 500px; height: auto; " src="Rating-average-column.png"></img></p>
+	
+	<p>However, we have a greater wealth of information available. Looking at each row of the rating matrix provides context for that person's ratings. When Alice rates multiple items, we can learn her personal rating scale via her <i>empirical rating distribution</i>.</p>
+	
+	<p class="aligncenter"><img style="max-width: 500px; height: auto; " src="Alice-bob-empirical-rating-dists.png"></img></p>
+	
+	Now let's see how we can use this insight to average the ratings in a smarter way.
+		
+	<h2>A common scale</h2>
+	<p>If we can't average Alice's and Bob's ratings because they correspond to different rating scales, then we should first convert the scores to corresponding ratings on a common/consensus scale to make them comparable. In our example, Alice's 8 might be converted to a consensus 9, while Bob's 8 might be converted to a consensus 2. But how do we determine a common scale? Well, if we take a step back, we can notice that converting all of Alice's scores to the common scale induces a transformation of her personal rating scale.</p>
+	
+	<p class="aligncenter"><img style="max-width: 700px; height: auto; " src="Optimal-transport-diagram.png"></img></p>
+	
+	<p>This is known as an <i>optimal transport map</i>, and we can measure the degree to which this transformation alters Alice's rating distribution. So a natural consensus scale is given by the distribution which minimizes how much we alter everyone's rating distributions, an average of the personal rating scales known as a <i>Wasserstein barycenter</i>.</p>
+	
+	<p class="aligncenter"><img style="max-width: 900px; height: auto; " src="Converting-to-consensus-scale.png"></img></p>
+	
+	<p>In mathematical terms, the Wasserstein barycenter has a simple formula. If everyone's personal rating distributions have <a href=https://en.wikipedia.org/wiki/Cumulative_distribution_function>cumulative distribution functions</a> \( F_1, \dots, F_n \) (so the <a href=https://en.wikipedia.org/wiki/Quantile_function>quantile functions</a> are \( F_1^{-1},\dots,F_n^{-1} \)), then the consensus scale \( \widehat \mu \) has quantile function \[ F_{\widehat \mu}^{-1} = \frac{1}{n} \sum_{i=1}^n F_i^{-1}, \] and the optimal transport map converting person \( k \)'s ratings to the common scale is \[F_{\widehat \mu}^{-1} \circ F_k = \frac{1}{n} \sum_{i=1}^n F_i^{-1} \circ F_k. \]</p>
+	
+	<h2>The rating estimator</h2>
+	<p>Once we convert the ratings to a common scale, we can average them fairly, and we get <b>the rating estimator</b>. It has two steps, the first of which we've already described.</p>
+	
+	<p><b>Step 1.</b> (Primitive ratings): Given an item with ratings \( r_1,...,r_n \), define the <i>primitive aggregate rating</i> for that item as \[ \begin{align*} R_0(r_1,\dots,r_n) &:= \frac{1}{n} \sum_{k=1}^n F_{\widehat \mu}^{-1} \circ F_k(r_k) \\ &= \frac{1}{n^2} \sum_{i=1}^n \sum_{k=1}^n F_i^{-1} \circ F_k(r_k). \end{align*} \] Calculate the primitive rating for all items, and obtain the distribution \( \nu \) of primitive
+ratings for all items.</p>
+
+	<p><b>Step 2.</b> (Final rescaling): Adjust each primitive rating r by reporting the aggregate
+rating for that item as \[ R(r) := F_{\widehat \mu}^{-1} \circ F_\nu(r) = \frac{1}{n} \sum_{i=1} F_i^{-1} \circ F_\nu(r). \]</p>
+	
+	<p>Step 2, applied to a primitive rating for each item, yields the rating estimator rating for each item. Why do we need this second step? It turns out that if people disagree on preferences, i.e. which items are better than others, then \( R_0 \) outputs a distribution of \( \nu \) which is different from the consensus scale \( \widehat \mu \). Step 2 rescales the result to fit the consensus scale, without changing the ordering of the values that \( R_0 \) gave us.</p>
+	
+	<p>For more details, including an application to anime ratings from <a href=https://myanimelist.net/topanime.php>MyAnimeList</a>, check out <a href=https://arxiv.org/abs/2410.00865>my paper</a> on the rating estimator! And if you want to try out the rating estimator on your own rating data, <a href=https://github.com/pillowmath/Rating-Estimator>here's</a> a Python implementation, as well. Here are some highlights from the paper:
+		<ul>
+			<li>The rating estimator <i>provably</i> outperforms the average in estimating the quality of items.</li>
+			<li>If everyone ranks all the items in the same order, the rating estimator is the same as the average.</li>
+			<li>The rating estimator can be used to quantify how similar people's ratings are to each other. It turns out that users of MyAnimeList have relatively similar personal rating scales, but their preferences differ heavily!</li>
+		</ul>
+		</p>
+	
+	</article>
+</body>
