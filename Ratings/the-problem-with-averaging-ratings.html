@@ -119,7 +119,8 @@
 			<li>MyAnimeList users prefer the top anime recommended by the rating estimator to the top anime recommended by the standard average.</li>
 			<li>On average, the difference in item rankings (not ratings) between the average and the rating estimator is 11% of the total number of items.</li>
 			<li>The rating estimator can be used to quantify how similar people's ratings are to each other. It turns out that users of MyAnimeList have relatively similar personal rating scales, but their preferences differ heavily!</li>
-		</ul></p>
+		</ul>
+		</p>
 	
 	<h2>Mathematical description of the rating estimator</h2>
 	<p>In mathematical terms, the Wasserstein barycenter has a simple formula. If everyone's personal rating distributions have <a href=https://en.wikipedia.org/wiki/Cumulative_distribution_function>cumulative distribution functions</a> \( F_1, \dots, F_n \) (so the <a href=https://en.wikipedia.org/wiki/Quantile_function>quantile functions</a> are \( F_1^{-1},\dots,F_n^{-1} \)), then the consensus scale \( \widehat \mu \) has quantile function \[ F_{\widehat \mu}^{-1} = \frac{1}{n} \sum_{i=1}^n F_i^{-1}, \] and the optimal transport map converting person \( k \)'s ratings to the common scale is \[F_{\widehat \mu}^{-1} \circ F_k = \frac{1}{n} \sum_{i=1}^n F_i^{-1} \circ F_k. \]</p>
