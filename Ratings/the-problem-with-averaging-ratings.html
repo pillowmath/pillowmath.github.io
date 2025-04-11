@@ -100,13 +100,13 @@
 	<h2>The rating estimator</h2>
 	<p>Once we convert the ratings to a common scale, we can average them fairly, and we get <b>the rating estimator</b>. It has two steps, the first of which we've already described.</p>
 	
-	<p><b>Step 1.</b> (Primitive ratings): Given an item with ratings \( r_1,...,r_n \), define the <i>primitive aggregate rating</i> for that item as \[ \begin{align*} R_0(r_1,\dots,r_n) &:= \frac{1}{n} \sum_{k=1}^n F_{\widehat \mu}^{-1} \circ F_k(r_k) \\ &= \frac{1}{n^2} \sum_{i=1}^n \sum_{k=1}^n F_i^{-1} \circ F_k(r_k). \end{align*} \] Calculate the primitive rating for all items, and obtain the distribution \( \nu \) of primitive
+	<p><b>Step 1.</b> (Primitive ratings): Given an item with ratings \( r_1,...,r_n \), define the <i>primitive aggregate rating</i> for that item as \[ \begin{align*} R_0(r_1,\dots,r_n) &:= \frac{1}{n} \sum_{k=1}^n F_{\widehat \mu}^{-1} \circ F_k(r_k) \\ &= \frac{1}{n^2} \sum_{i=1}^n \sum_{k=1}^n F_i^{-1} \circ F_k(r_k). \end{align*} \] Calculate the primitive rating for all items to obtain the distribution \( \nu \) of primitive
 ratings for all items.</p>
 
-	<p><b>Step 2.</b> (Final rescaling): Adjust each primitive rating r by reporting the aggregate
+	<p><b>Step 2.</b> (Final rescaling): Adjust each primitive rating \( r \) by reporting the aggregate
 rating for that item as \[ R(r) := F_{\widehat \mu}^{-1} \circ F_\nu(r) = \frac{1}{n} \sum_{i=1} F_i^{-1} \circ F_\nu(r). \]</p>
 	
-	<p>Step 2, applied to a primitive rating for each item, yields the rating estimator rating for each item. Why do we need this second step? It turns out that if people disagree on preferences, i.e. which items are better than others, then \( R_0 \) outputs a distribution of \( \nu \) which is different from the consensus scale \( \widehat \mu \). Step 2 rescales the result to fit the consensus scale, without changing the ordering of the values that \( R_0 \) gave us.</p>
+	<p>Step 2, applied to a primitive rating for each item, yields the rating estimator score for each item. Why do we need this second step? It turns out that if people disagree on preferences, i.e. which items are better than others, then \( R_0 \) outputs a distribution of \( \nu \) which is different from the consensus scale \( \widehat \mu \). Step 2 rescales the result to fit the consensus scale, without changing the ordering of the values that \( R_0 \) gave us.</p>
 	
 	<p>For more details, including an application to anime ratings from <a href=https://myanimelist.net/topanime.php>MyAnimeList</a>, check out <a href=https://arxiv.org/abs/2410.00865>my paper</a> on the rating estimator! And if you want to try out the rating estimator on your own rating data, <a href=https://github.com/pillowmath/Rating-Estimator>here's</a> a Python implementation, as well. Here are some highlights from the paper:
 		<ul>
