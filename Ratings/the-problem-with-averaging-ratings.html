@@ -131,7 +131,7 @@
 ratings for all items.</p>
 
 	<p><b>Step 2.</b> (Final rescaling): Adjust each primitive rating \( r \) by reporting the aggregate
-rating for that item as \[ \begin{align*} R(r) &:= F_{\widehat \mu}^{-1} \circ F_\nu(r) \\ &= \frac{1}{n} \sum_{i=1} F_i^{-1} \circ F_\nu(r). \end{align*} \]</p>
+rating for that item as \[ \begin{align*} R(r) &:= F_{\widehat \mu}^{-1} \circ F_\nu(r) \\ &= \frac{1}{n} \sum_{i=1}^n F_i^{-1} \circ F_\nu(r). \end{align*} \]</p>
 	
 	<p>Step 2, applied to a primitive rating for each item, yields the rating estimator score for each item. Why do we need this second step? It turns out that if people disagree on preferences, i.e. which items are better than others, then \( R_0 \) outputs a distribution of \( \nu \) which is different from the consensus scale \( \widehat \mu \). Step 2 rescales the result to fit the consensus scale, without changing the ordering of the values that \( R_0 \) gave us.</p>
 	
