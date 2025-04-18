@@ -91,7 +91,7 @@
 	
 	<p class="aligncenter"><img style="max-width: 700px; height: auto; " src="Optimal-transport-diagram.png"></img></p>
 	
-	<p>This reshaping is known as an <i>optimal transport map</i>, and we can measure how much that reshaping changes her original scale. So a natural goal is to find a common scale that changes everyone’s personal scales as little as possible. This gives a kind of average of everyone’s personal rating scales, called a <i>Wasserstein barycenter</i>.</p>
+	<p>This reshaping is known as an <i>optimal transport map</i>, and we can measure how much it changes her original scale. So a natural goal is to find a common scale that changes everyone’s personal scales as little as possible. This gives a kind of average of everyone’s personal rating scales, called a <i>Wasserstein barycenter</i>.</p>
 	
 	<p class="aligncenter"><img style="max-width: 875px; height: auto; " src="Converting-to-consensus-scale.png"></img></p>
 	
@@ -129,8 +129,8 @@
 			<p class="aligncenter"><img style="max-width: 800px; height: auto; " src="Labeled-rating-scale.png"></img></p>
 			Similarly, if the items are incomparable, it doesn't make sense to combine a person's ratings into one rating scale.</li>
 			<li>When calculating quantiles, the method you use can produce a different result. The code I've provided uses the CDF and inverse CDF to calculate quantiles, but this is "optimistic," in the sense that it picks the higher values at discontinuity points. If the results are too right-shifted for your context, consider trying out a different method for performing quantile calculations, such as the ones <a href=https://numpy.org/doc/2.1/reference/generated/numpy.quantile.html>here</a>.</li>
-			<li>When applying the rating estimator to a database you maintain (such as ratings on an app/website), consider updating the rating estimator scores using a <a href=https://en.wikipedia.org/wiki/Moving_average#Cumulative_average>cumulative moving average</a> to avoid periodically doing a large computation. Computations of the Wasserstein barycenter and the ratings themselves can both be simplified in this way.</li>
-			<li>With very large datasets, the rating matrix may be too large to fit into memory. Here is a sparse matrix implementation to get around this issue; just load in your rating matrix in scipy CSR format as an .npz file.</li>
+			<li>When applying the rating estimator to a database you maintain (such as ratings on an app/website), consider updating the rating estimator scores using a <a href=https://en.wikipedia.org/wiki/Moving_average#Cumulative_average>cumulative moving average</a> to avoid periodically performing a large computation. Computations of the Wasserstein barycenter and the ratings themselves can both be simplified in this way.</li>
+			<li>With very large datasets, the rating matrix may be too large to fit into memory. Here is a sparse matrix implementation to get around this issue; just load in your rating matrix in SciPy CSR format as an .npz file.</li>
 		</ul>
 		</p>
 	
