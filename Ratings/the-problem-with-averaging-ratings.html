@@ -87,11 +87,11 @@
 	Now let's see how we can use this insight to average the ratings in a smarter way.
 		
 	<h2>A common scale</h2>
-	<p>If we can't average Alice's and Bob's ratings because they correspond to different rating scales, then we should first convert the scores to corresponding ratings on a common/consensus scale to make them comparable. In our example, Alice's 8 might be converted to a consensus 9, while Bob's 8 might be converted to a consensus 2. But how do we determine a common scale? Well, if we take a step back, we can notice that converting all of Alice's scores to the common scale induces a transformation of her personal rating scale.</p>
+	<p>If we can't average Alice's and Bob's ratings because they correspond to different rating scales, then we should first convert the scores to corresponding ratings on a common/consensus scale to make them comparable. In our example, Alice's 8 might be converted to a consensus 9, while Bob's 8 might be converted to a consensus 2. But how do we determine a common rating scale? Taking a step back: when we convert someone’s ratings—say, Alice’s—to the common scale, we’re effectively reshaping her personal rating distribution.</p>
 	
 	<p class="aligncenter"><img style="max-width: 700px; height: auto; " src="Optimal-transport-diagram.png"></img></p>
 	
-	<p>This is known as an <i>optimal transport map</i>, and we can measure how much this transformation alters Alice's rating scale. A natural way to find a common rating scale is to change each person’s scale as little as possible. This gives a kind of average of everyone’s personal rating scales, called a <i>Wasserstein barycenter</i>.</p>
+	<p>This reshaping is known as an <i>optimal transport map</i>, and we can measure how much that reshaping changes her original scale. So a natural goal is to find a common scale that changes everyone’s personal scales as little as possible. This gives a kind of average of everyone’s personal rating scales, called a <i>Wasserstein barycenter</i>.</p>
 	
 	<p class="aligncenter"><img style="max-width: 875px; height: auto; " src="Converting-to-consensus-scale.png"></img></p>
 	
@@ -111,7 +111,6 @@
 	
 	<h3>Theoretical guarantees</h3>
 	Under non-parametric assumptions—that is, without assuming what the ratings look like—the rating estimator <i>provably</i> outperforms the average in estimating the quality of items (for details, see <a href=https://arxiv.org/abs/2410.00865>my paper</a> on the rating estimator).
-	
 	
 	<h2>Analyses of real-world rating data</h2>
 	<p>Coming soon! For now, check out Section 8 of <a href=https://arxiv.org/abs/2410.00865>my paper</a> on the rating estimator for an analysis of anime ratings from <a href=https://myanimelist.net/topanime.php>MyAnimeList</a>. And if you want to try out the rating estimator on your own rating data, <a href=https://github.com/pillowmath/Rating-Estimator>here's</a> a Python implementation, as well. Here are some highlights from the analysis in the paper:
