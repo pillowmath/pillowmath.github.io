@@ -130,7 +130,7 @@
 			Similarly, if the items are incomparable, it doesn't make sense to combine a person's ratings into one rating scale.</li>
 			<li>When calculating quantiles, the method you use can produce a different result. The code I've provided uses the CDF and inverse CDF to calculate quantiles, but this is "optimistic," in the sense that it picks the higher values at discontinuity points. If the results are too right-shifted for your context, consider trying out a different method for performing quantile calculations, such as the ones <a href=https://numpy.org/doc/2.1/reference/generated/numpy.quantile.html>here</a>.</li>
 			<li>When applying the rating estimator to a database you maintain (such as ratings on an app/website), consider updating the rating estimator scores using a <a href=https://en.wikipedia.org/wiki/Moving_average#Cumulative_average>cumulative moving average</a> to avoid periodically performing a large computation. Computations of the Wasserstein barycenter and the ratings themselves can both be simplified in this way.</li>
-			<li>With very large datasets, the rating matrix may be too large to fit into memory. Here is a sparse matrix implementation to get around this issue; just load in your rating matrix in SciPy CSR format as an .npz file.</li>
+			<li>With very large datasets, the rating matrix may be too large to fit into memory. My implementation has a <a href=https://github.com/pillowmath/Rating-Estimator/blob/main/rating_estimator_sparse.py>sparse matrix option</a> to get around this issue; just load in your rating matrix in SciPy CSR format as an .npz file, along with a .csv listing your item ids.</li>
 		</ul>
 		</p>
 	
