@@ -270,7 +270,7 @@ ratings for all items (with CDF \( F_{\text{Primitive}} \)).</p>
 	
 	<p>Step 2, applied to a primitive rating for each item, yields the rating estimator score for each item. Why do we need this second step? It turns out that if people disagree on preferences, i.e. which items are better than others, then the \( R_0 \) values will fit to a rating scale which is different from the consensus scale; that is, \( F_{\text{Primitive}} \) will look different from \( F_\text{Consensus} \). Step 2 rescales the result to fit the consensus scale, without changing the ordering of the values that \( R_0 \) gave us.</p>
 	
-	<p>For more details, including an application to anime ratings from <a href=https://myanimelist.net/topanime.php>MyAnimeList</a>, check out <a href=https://arxiv.org/abs/2410.00865>my paper</a> on the rating estimator! And if you want to try out the rating estimator on your own rating data, <a href=https://github.com/pillowmath/Rating-Estimator>here's</a> a Python implementation, as well. Here are some more highlights from the paper:
+	<p>For more details, check out <a href=https://arxiv.org/abs/2410.00865>my paper</a> on the rating estimator! And if you want to try out the rating estimator on your own rating data, <a href=https://github.com/pillowmath/Rating-Estimator>here's</a> a Python implementation, as well. Here are some more highlights from the paper:
 		<ul>
 			<li>If everyone ranks all the items in the same order, the rating estimator is the same as the standard average.</li>
 			<li>The rating estimator achieves the optimal rate for the number of raters needed for accurate judgments.</li>
