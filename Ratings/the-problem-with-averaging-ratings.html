@@ -58,8 +58,12 @@
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->
 <article class="markdown-body">
+	<div style="margin-bottom: 1em;">
+	  <a href="https://pillowmath.github.io/" style="text-decoration: none; color: #555;">← Home</a>
+	</div>
 	<h1>The Problem With Averaging Ratings (And How to Fix It)</h1>
-	<h2>Personal rating scales</h2>
+	<p style="font-size: 0.9em; color: gray; margin-top: -0.5em;">8-minute read (+ 3 min math & implementation notes)</p>
+	<h2>People have personal rating scales</h2>
 	<p>Here’s a common situation: We want to compare a number of items—like <a href=https://www.imdb.com/chart/top/?ref_=nv_mv_250>movies</a>, <a href=https://www.yelp.com/search?find_desc=Restaurants>restaurants</a>, or <a href=https://pillowmath.github.io/Ratings/job-applicant-ratings.html>job applicants</a>—to see which ones we prefer to others. So we have people provide numerical ratings for each item—like a number between 1 and 10—and we compare the average ratings for each item. This is an approach that goes back <a href=https://psycnet.apa.org/record/1933-01885-001>almost a hundred years</a>, but there’s a fundamental issue: people rate according to different <i>personal rating scales</i>.</p>
 	<p>For example, suppose we have two people, Alice and Bob, rating movies.</p>
 	
@@ -75,7 +79,7 @@
 	
 	<p>Personal rating scales can lead to unfair comparisons, as well. If Alice and Bob rate different job applicants, Bob’s high ratings give an unfair advantage to anyone he rates. Simply averaging ratings forces us to interpret these numbers in a way which is divorced from their context.
 </p>
-	<h2>Looking at the data</h2>
+	<h2>How the average misinterprets the data</h2>
 	<p>If we take a closer look at the data, we can get a hint as to where we're going wrong. When we average the ratings for a particular item, we only look at one column of the rating matrix at a time.</p>
 	
 	<p class="aligncenter"><img style="max-width: 500px; height: auto; " src="Rating-average-column.png"></img></p>
@@ -86,7 +90,7 @@
 	
 	Now let's see how we can use this insight to average the ratings in a smarter way.
 		
-	<h2>A common scale</h2>
+	<h2>A common scale for smarter comparisons</h2>
 	<p>If we can't average Alice's and Bob's ratings because they correspond to different rating scales, then we should first convert the scores to corresponding ratings on a common/consensus scale to make them comparable. In our example, Alice's 8 might be converted to a consensus 9, while Bob's 8 might be converted to a consensus 2. But how do we determine a common rating scale? Taking a step back: when we convert someone’s ratings—say, Alice’s—to the common scale, we’re effectively reshaping her personal rating distribution.</p>
 	
 	<p class="aligncenter"><img style="max-width: 700px; height: auto; " src="Optimal-transport-diagram.png"></img></p>
@@ -95,7 +99,7 @@
 	
 	<p class="aligncenter"><img style="max-width: 875px; height: auto; " src="Converting-to-consensus-scale.png"></img></p>
 	
-	<p>Once we convert the ratings for an item to a common scale, we can compare and average them. This gives us a new method of averaging ratings, <b>the rating estimator</b>. </p>
+	<p>Once we convert the ratings for an item to a common scale, we can compare and average them fairly. This gives us a new method of averaging ratings, <b>the rating estimator</b>. </p>
 	
 	<h2>Benefits of the rating estimator</h2>
 	<p>The rating estimator has a number of benefits over the standard average:</p>
@@ -131,7 +135,7 @@
 	
 	<p class="aligncenter"><img style="max-width: 445px; height: auto; " src="Myanimelist-average-ratings.png"></img><img style="max-width: 445px; height: auto; " src="Myanimelist-rating-estimator-scores.png"></img></p>
 	
-	<p>The rating estimator scores are less concentrated, and the spikes at the ends of the distribution tell you that there are a number of items which users almost universally rate at the top or the bottom of their lists.</p>
+	<p>The rating estimator scores are less concentrated, and the spikes at the ends of the distribution tell you that users give a lot of ratings at the top or the bottom of their lists.</p>
 	
 	<p>To see a bit more of what's really happening, let's look at the top 10 anime for each method.</p>
 	
