@@ -120,7 +120,7 @@
 	<p>Let's see the rating estimator in action in a few different contexts. If you'd like to try it out on your own rating data, <a href=https://github.com/pillowmath/Rating-Estimator>here's</a> a Python implementation.</p>
 	
 	<h3>Foodpanda Bangladesh restaurant ratings</h3>
-	<p><a href=https://www.foodpanda.com/>Foodpanda</a> is an online food delivery service that allows users to rate and review restaurants. <a href=https://data.mendeley.com/datasets/532fxhnwbb/2>This dataset</a> of ratings from Foodpanda's Bangladeshi users has over 300000 reviews from over 3800 users of over 3600 restaurants. Foodpanda ratings are given on a 5 star scale, with 1 star being the lowest and 5 stars being the highest; restaurants and delivery people are rated separately, so we will only look at the restuarant ratings here. To improve the data quality, I removed users and restaurants with fewer than 10 ratings (an arbitrary cutoff) associated to them.</p>
+	<p><a href=https://www.foodpanda.com/>Foodpanda</a> is an online food delivery service that allows users to rate and review restaurants. <a href=https://data.mendeley.com/datasets/532fxhnwbb/2>This dataset</a> of ratings from Foodpanda's Bangladeshi users has over 300,000 one to five star ratings from over 3,800 users of over 3,600 restaurants. To improve the data quality, I removed users and restaurants with fewer than 10 ratings (an arbitrary cutoff) associated to them.</p>
 	
 	<p>There's a stark difference between the average ratings and rating estimator scores for these restaurants:</p>
 	
@@ -129,7 +129,7 @@
 	<p>While average ratings tend to follow a familiar bell curve, the rating estimator scores often show two clear peaks—one near 1 star and one near 5. That’s because users tend to have a clear distinction in ratings between restuarants they like and restaurants they didn't. The restaurants with the lowest rating estimator scores are often at the bottom of people’s lists, while the restuarants with the highest rating estimator scores are often at the top. This makes the rating estimator especially helpful for users trying to tell the difference between a likely great experience and a likely bad one; a 1 star score means people tend to give it 1 star, and a 5 star score means people tend to give it 5 stars. In contrast, average ratings can blur that distinction: two restaurants with similar averages might differ a lot in quality, and the meaning of those average scores is harder to pin down since the scale—scores mostly between 2 and 3.5—is different from the scale users rate on.</p>
 	
 	<h3>MyAnimeList anime ratings</h3>
-	<p><a href=https://myanimelist.net/topanime.php>MyAnimeList</a> is a website for rating anime (Japanese animated tv shows and movies). <a href=https://www.kaggle.com/datasets/azathoth42/myanimelist>Azathoth's 2018 Kaggle.com dataset</a> contains over 46 million ratings from over 300000 users on over 14000 anime. MyAnimeList ratings are given on a scale of 1 to 10, 1 being the lowest possible score and 10 being the highest. To improve the data quality, I removed users and anime with fewer than 10 ratings (an arbitrary cutoff) associated to them.</p>
+	<p><a href=https://myanimelist.net/topanime.php>MyAnimeList</a> is a website for rating anime (Japanese animated tv shows and movies). <a href=https://www.kaggle.com/datasets/azathoth42/myanimelist>Azathoth's 2018 Kaggle.com dataset</a> contains over 46 million ratings from over 300,000 users on over 14,000 anime. MyAnimeList ratings are given on a scale of 1 to 10, 1 being the lowest possible score and 10 being the highest. To improve the data quality, I removed users and anime with fewer than 10 ratings (an arbitrary cutoff) associated to them.</p>
 	
 	<p>When comparing the results of the standard average and the rating estimator, on average, an item changes its ranking by 11% of the total number of items. That's an average change in rank of about 1500 out of 14000 anime! The distributions of average ratings and rating estimator scores are qualitatively different, as well.</p>
 	
@@ -192,9 +192,37 @@
 	
 	<p>Eight of the top ten are the same under both methods, but the rating estimator puts a surprising pick in first place: Owarimonogatari Season 2, an anime that doesn’t even crack the average rating’s top ten. It’s less popular than the standard average’s top choice, but the rating estimator highlights this dark horse because almost everyone who does watch it rates it at the top of their list.</p>
 	
-	<p>In general, the rating estimator ranks anime in a way that users prefer over rankings based on standard averages, making it a stronger basis for generating anime recommendations. We can quantitatively test this as follows: On MyAnimeList, anime are ranked by their average rating, and these rankings are publicly visible and widely used as a recommendation source. Ratings are presented in pages of 50 items, so the top 50 and top 100 anime correspond to those appearing on the first one or two pages of the ranked list. We compare the top 50 and top 100 anime on a few metrics. Higher scores indicate better recommendations. See Section 8 of <a href=https://arxiv.org/abs/2410.00865>my paper</a> for details on how these scores are calculated.</p>	
+	<p>In general, the rating estimator ranks anime in a way that better aligns with raters' preferences, making it a stronger basis for generating anime recommendations. We can quantitatively test this by comparing the performance on rating prediction. For instance, a top rated anime would be predicted to be at the top of most people's lists, while an anime ranked at the 70% percent mark would be predicted to be around the 70% mark on most people's lists. Here's a chart comparing the predictions of the standard average and the rating estimator with a few performance metrics: Mean Absolute Error (MAE, lower is better), Mean Squared Error (MSE, lower is better), Exact Match Rate (higher is better), along with Standard Errors (SE) for each score.</p>	
 	
-	<table style="border-collapse: collapse; margin: 40px auto; width: 60%;">
+	<table style="border-collapse: collapse; margin: 40px auto; width: 80%;">
+		  <caption style="font-weight: bold; font-size: 18px; margin-bottom: 10px;">Prediction performance for MyAnimeList ratings</caption>
+		  <tr>
+		    <th style="border: 1px solid black; padding: 10px;"></th>
+		    <th style="border: 1px solid black; padding: 10px;">MAE (SE)</th>
+		    <th style="border: 1px solid black; padding: 10px;">MSE (SE)</th>
+			<th style="border: 1px solid black; padding: 10px;">Exact Match Rate (SE)</th>
+		  </tr>
+		  <tr>
+		    <td style="border: 1px solid black; padding: 10px; text-align: center;">Standard average</td>
+		    <td style="border: 1px solid black; padding: 10px; text-align: center;">1.552 (0.0004)</td>
+		    <td style="border: 1px solid black; padding: 10px; text-align: center;">4.203 (0.002)</td>
+			<td style="border: 1px solid black; padding: 10px; text-align: center;">0.219 (0.0001)</td>
+		  </tr>
+		  <tr>
+		    <td style="border: 1px solid black; padding: 10px; text-align: center;">Rating estimator</td>
+		    <td style="border: 1px solid black; padding: 10px; text-align: center;">1.353 (0.0004)</td>
+		    <td style="border: 1px solid black; padding: 10px; text-align: center;">3.407 (0.002)</td>
+			<td style="border: 1px solid black; padding: 10px; text-align: center;">0.263 (0.0001)</td>
+		  </tr>
+		  <tr>
+		    <td style="border: 1px solid black; padding: 10px; text-align: center;">Average of 5 random rankings</td>
+		    <td style="border: 1px solid black; padding: 10px; text-align: center;">1.542 (0.0002)</td>
+		    <td style="border: 1px solid black; padding: 10px; text-align: center;">4.416 (0.001)</td>
+			<td style="border: 1px solid black; padding: 10px; text-align: center;">0.238 (0.0001)</td>
+		  </tr>
+	</table>
+	
+	<!-- <table style="border-collapse: collapse; margin: 40px auto; width: 60%;">
 	  <caption style="font-weight: bold; font-size: 18px; margin-bottom: 10px;">Top 50 ranking, viewed as recommendations</caption>
 	  <tr>
 	    <th style="border: 1px solid black; padding: 10px;"></th>
@@ -238,9 +266,9 @@
 	    <td style="border: 1px solid black; padding: 10px; text-align: center;">0.618</td>
 	    <td style="border: 1px solid black; padding: 10px; text-align: center;">0.644</td>
 	  </tr>
-	</table>
+	</table> -->
 	
-	<p>For this MyAnimeList data, the rating estimator outperforms the average in every case!</p>
+	<p>For this MyAnimeList data, the rating estimator significantly outperforms the average in every case! You can see more experiments of this kind for Netflix and Yelp restaurant data in Section 8 of <a href =https://arxiv.org/abs/2410.00865>my paper</a>.</p>
 	
 	<p>The rating estimator can also be used to measure how much raters agree with one another—similar in spirit to something called <a href=https://en.wikipedia.org/wiki/Kendall%27s_W>Kendall's W statistic</a> (see Section 7 of <a href=https://arxiv.org/abs/2410.00865>my paper</a> for how this works). It gives us values between 0 and 1 that reflect how similar people’s rating scales are and how much they agree overall when you also consider their preferences—that is, how they rank the anime they’ve rated.
 
