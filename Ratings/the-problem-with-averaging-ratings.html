@@ -268,9 +268,9 @@
 	  </tr>
 	</table> -->
 	
-	<p>For this MyAnimeList data, the rating estimator significantly outperforms the average in every case! You can see more experiments of this kind for Netflix and Yelp restaurant data in Section 8 of <a href =https://arxiv.org/abs/2410.00865>my paper</a>.</p>
+	<p>For this MyAnimeList data, the rating estimator significantly outperforms the average in every case! You can see more experiments of this kind for Netflix and Yelp restaurant data in Section 8 of <a href =https://arxiv.org/abs/2410.00865v2>my paper</a>.</p>
 	
-	<p>The rating estimator can also be used to measure how much raters agree with one another—similar in spirit to something called <a href=https://en.wikipedia.org/wiki/Kendall%27s_W>Kendall's W statistic</a> (see Section 7 of <a href=https://arxiv.org/abs/2410.00865>my paper</a> for how this works). It gives us values between 0 and 1 that reflect how similar people’s rating scales are and how much they agree overall when you also consider their preferences—that is, how they rank the anime they’ve rated.
+	<p>The rating estimator can also be used to measure how much raters agree with one another—similar in spirit to something called <a href=https://en.wikipedia.org/wiki/Kendall%27s_W>Kendall's W statistic</a> (see Section 7 of <a href=https://arxiv.org/abs/2410.00865v2>my paper</a> for how this works). It gives us values between 0 and 1 that reflect how similar people’s rating scales are and how much they agree overall when you also consider their preferences—that is, how they rank the anime they’ve rated.
 
 	<p>A score of 0 means no agreement, and 1 means complete agreement. MyAnimeList users turn out to have fairly similar rating scales, with a score of about <b>0.81</b>. But when you factor in their actual preferences, the score drops to around <b>0.18</b>. So while users tend to use the scale in relatively similar ways, they strongly disagree on which anime deserve the top spots!</p>
 	
@@ -302,7 +302,7 @@ ratings for all items (with CDF \( F_{\text{Primitive}} \)).</p>
 	
 	<p>Step 2, applied to a primitive rating for each item, yields the rating estimator score for each item. Why do we need this second step? It turns out that if people disagree on preferences, i.e. which items are better than others, then the \( R_0 \) values will fit to a rating scale which is more compressed than the consensus scale, like a bell curve; that is, \( F_{\text{Primitive}} \) will look different from \( F_\text{Consensus} \). Step 2 rescales the result to fit the consensus scale, without changing the ordering of the values that \( R_0 \) gave us.</p>
 	
-	<p>For more details, check out <a href=https://arxiv.org/abs/2410.00865>my paper</a> on the rating estimator! And if you want to try out the rating estimator on your own rating data, <a href=https://github.com/pillowmath/Rating-Estimator>here's</a> a Python implementation, as well. Here are some more highlights from the paper:
+	<p>For more details, check out <a href=https://arxiv.org/abs/2410.00865v2>my paper</a> on the rating estimator! And if you want to try out the rating estimator on your own rating data, <a href=https://github.com/pillowmath/Rating-Estimator>here's</a> a Python implementation, as well. Here are some more highlights from the paper:
 		<ul>
 			<li>If everyone ranks all the items in the same order, the rating estimator is the same as the standard average.</li>
 			<li>The rating estimator achieves the optimal rate for the number of raters needed for accurate judgments.</li>
@@ -322,7 +322,7 @@ ratings for all items (with CDF \( F_{\text{Primitive}} \)).</p>
 	  <li>
 	    Raban, Daniel (2024). “<i>How should we aggregate ratings? Accounting for personal rating scales via Wasserstein barycenters</i>”. 
 	    <i>arXiv preprint</i>, 
-	    <a href="https://arxiv.org/abs/2410.00865">arXiv:2410.00865</a>.
+	    <a href="https://arxiv.org/abs/2410.00865v2">arXiv:2410.00865</a>.
 	  </li>
   
 	  <li>
